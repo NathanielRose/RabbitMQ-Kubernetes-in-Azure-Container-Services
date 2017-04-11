@@ -1,0 +1,33 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "dnsNamePrefix": {
+      "value": "rabbitmqACS"
+    },
+    "agentCount": {
+      "value": 1
+    },
+    "agentVMSize": {
+      "value": "Standard_A2"
+    },
+    "linuxAdminUsername": {
+      "value": "azureuser"
+    },
+    "orchestratorType": {
+      "value": "Kubernetes"
+    },
+    "masterCount": {
+      "value": 1
+    },
+    "sshRSAPublicKey": {
+      "value": "GEN-SSH-PUB-KEY"
+    },
+    "servicePrincipalClientId": {
+      "value": "6f439874-e42f-408b-afd1-644d4100a729"
+    },
+    "servicePrincipalClientSecret": {
+      "value": "6db79b6b-f625-416d-9c22-e59dde05b07c"
+    }
+  }
+}
