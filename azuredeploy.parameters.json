@@ -21,7 +21,7 @@
       "value": 1
     },
     "sshRSAPublicKey": {
-      "value": "GEN-SSH-PUB-KEY"
+      "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDAM7dT0XJj45AbbAlz3kBcj4Oe6jCcJ4INvgyfEXY7tJwJHUPR863aMP04wArJ9iw+pODKf/KTlPREeK4eeIU7v2pPZXXr1cxDDQUx3yRHd+Vw7yyqtZJpoKe4ezP7dVJFhL3VnQugXLblwLXXNwZg3GbgJncOoMtWVrOKN5wK0cETjfEiTjrU5B3I0VVvAmEchPAFmxM2thcJ3sLgg0TxS+EUjgyGW67Q2iUq2IYXeYe8WLxdeJQrdqqBR69YtrD4XZYgx6VWVq9b+2VCFXKD/1Zn9PiKYT4ahLMnZru7TDXugnthi1SiiQQuhIoxTvFlxk3eEDlG31hY3yOHnrKrlfz1UU5gYdkV5aVHC7XZ6nHB+eoaPBp9cNX/g+SlubP8h7hAXcqVrBqx89SFGiVwmsgMLekZIcQCsPMiAKFmZspC15luMOjpXlOlfRtIni2rzLZLt+miYET93X7f0jjZ/5GHy2qdIEaMFzctHvZgEYUsu4Wpsglo2ly0ptrXWR8e3dTyNoL6/UWVBtgQjNFnXAbCJhMJ8OQPsrruTdgvEjZDq81dYD5ua9WTCfnl+4y+5kvNpFhkaguAbCm6jRXAOU6ngHkj6uuZSrJ58hXojCoFFMo2AQD9W8Pay61TZlmN/sf1xrfQ/kLWPwcaG1z1pBlFXKw6FPV6pVXA4mkTMw== rose.nathanielm@gmail.com"
     },
     "servicePrincipalClientId": {
       "value": "6f439874-e42f-408b-afd1-644d4100a729"
