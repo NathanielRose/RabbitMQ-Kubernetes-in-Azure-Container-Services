@@ -145,3 +145,92 @@ helm init
 helm installstable/rabbitmq
 
 ```
+
+You will receive an output similar to the one below:
+
+```PowerShell
+NAME:   cold-fly
+LAST DEPLOYED: Thu Apr 13 15:06:35 2017
+NAMESPACE: default
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1/Secret
+NAME               TYPE    DATA  AGE
+cold-fly-rabbitmq  Opaque  2     0s
+
+==> v1/PersistentVolumeClaim
+NAME               STATUS   VOLUME                                    CAPACITY  ACCESSMODES  AGE
+cold-fly-rabbitmq  Pending  pvc-762dc4c0-2095-11e7-bd2d-000d3a31f22b  0         0s
+
+==> v1/Service
+NAME               CLUSTER-IP    EXTERNAL-IP  PORT(S)                                AGE
+cold-fly-rabbitmq  10.0.119.105  <none>       4369/TCP,5672/TCP,25672/TCP,15672/TCP  0s
+
+==> extensions/v1beta1/Deployment
+NAME               DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
+cold-fly-rabbitmq  1        1        1           0          0s
+
+
+NOTES:
+
+** P.S. RabbitMQ may take a few minutes to become available. Please be patient. **
+
+The RabbitMQ AMQP port 5672 can be accessed on the following DNS name from within your cluster: cold-fly-rabbitmq.default.svc.cluster.local
+
+  echo Username      : user
+  echo Password      : $(kubectl get secret --namespace default cold-fly-rabbitmq -o jsonpath="{.data.rabbitmq-password}" | base64 --decode)
+  echo ErLang Cookie : $(kubectl get secret --namespace default cold-fly-rabbitmq -o jsonpath="{.data.rabbitmq-erlang-cookie}" | base64 --decode)
+
+To Access the RabbitMQ Management interface:
+
+  export POD_NAME=$(kubectl get pods --namespace default -l "app=cold-fly-rabbitmq" -o jsonpath="{.items[0].metadata.name}")
+  echo URL : http://127.0.0.1:15672
+  kubectl port-forward $POD_NAME 15672:15672
+
+```
+
+Switch over to `bash` and install kubectl using the following command:
+
+```Terminal
+curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+```
+
+Run the echo commands to attain your Username, Password and ErLang Cookie. You may need to at a ./ before kubectl if it was not added as an environment variable. Here is an example:
+
+```Bash
+echo ErLang Cookie : $(kubectl get secret --namespace default cold-fly-rabbitmq -o jsonpath="{.data.rabbitmq-erlang-cookie}" | base64 --decode)
+```
+
+**Exit** out of bash.
+
+We are still unable to connect to our service because the ip address have not been exposed through the load balancer.
+
+To configure the load balancer to accept external traffic to the deployment, run `kubectl edit svc` to configure the service to run through the load balancer.
+
+A text editor window will open displaying the YAML file for your services. 
+
+<img src="https://rtwrt.blob.core.windows.net/post3-rabbitmq/img2.PNG" width="600">
+
+For the Rabbitmq app change the network type to `LoadBalancer` under sessionAffinity.
+```Yaml
+   app: cold-fly-rabbitmq
+   sessionAffinity: None
+   type: LoadBalancer
+```
+
+Once the YAML has been edited run `kubectl get svc` to check the status of your rabbitmq app's external-ip address as it gets provisioned. 
+
+```PowerShell
+C:\Users\naros\Documents\GitHub\RabbitMQ-Kubernetes-in-Azure-Container-Services>kubectl get svc
+NAME                CLUSTER-IP     EXTERNAL-IP   PORT(S)                                                         AGE
+cold-fly-rabbitmq   10.0.119.105   <pending>     4369:30350/TCP,5672:30971/TCP,25672:32275/TCP,15672:30537/TCP   1d
+kubernetes          10.0.0.1       <none>        443/TCP                                                         2d
+```
+Once it has been completed, navigate to the `<External-IP>:15672` in your browser. Enter your credentials that you recorded earlier from Bash in the RabbitMQ Management Portal.
+
+<img src="https://rtwrt.blob.core.windows.net/post3-rabbitmq/img3.PNG" width="800">
+
+Once validated you will be directed to the server`s standard RabbitMQ Management UI to get started.
+
+<img src="https://rtwrt.blob.core.windows.net/post3-rabbitmq/img4.PNG" width="800">
