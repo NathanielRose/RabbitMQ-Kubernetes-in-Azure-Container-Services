@@ -229,8 +229,8 @@ kubernetes          10.0.0.1       <none>        443/TCP                        
 ```
 Once it has been completed, navigate to the `<External-IP>:15672` in your browser. Enter your credentials that you recorded earlier from Bash in the RabbitMQ Management Portal.
 
-<img src="https://rtwrt.blob.core.windows.net/post3-rabbitmq/img3.PNG" width="800">
+<img src="https://rtwrt.blob.core.windows.net/post3-rabbitmq/img3.PNG" width="900">
 
 Once validated you will be directed to the server`s standard RabbitMQ Management UI to get started.
 
-<img src="https://rtwrt.blob.core.windows.net/post3-rabbitmq/img4.PNG" width="800">
+<img src="https://rtwrt.blob.core.windows.net/post3-rabbitmq/img4.PNG" width="900">
